@@ -26,12 +26,12 @@ applyTheme(localStorage.getItem("theme") || "dark");
 
 // Each orientation has: chirality (N = normal, M = mirrored) and angle.
 const ORIENTATIONS = [
-  { id: "N0", chirality: "N", angle:   0 },
-  { id: "N90", chirality: "N", angle:  90 },
+  { id: "N0", chirality: "N", angle: 0 },
+  { id: "N90", chirality: "N", angle: 90 },
   { id: "N180", chirality: "N", angle: 180 },
   { id: "N270", chirality: "N", angle: 270 },
-  { id: "M0", chirality: "M", angle:   0 },
-  { id: "M90", chirality: "M", angle:  90 },
+  { id: "M0", chirality: "M", angle: 0 },
+  { id: "M90", chirality: "M", angle: 90 },
   { id: "M180", chirality: "M", angle: 180 },
   { id: "M270", chirality: "M", angle: 270 }
 ];
