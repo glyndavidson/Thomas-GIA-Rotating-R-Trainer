@@ -46,6 +46,7 @@ const glyphEls = [
   document.getElementById("g2"),
   document.getElementById("g3")
 ];
+const gameArea = document.getElementById("game");
 const feedbackContainer = document.querySelector(".feedback");
 const feedbackIcon = document.getElementById("feedback-icon");
 const feedbackText = document.getElementById("feedback-text");
@@ -115,6 +116,40 @@ document.addEventListener("keydown", e => {
     newPuzzle();
   }
 });
+
+// Swipe left = new puzzle (mobile)
+let touchStartX = null;
+let touchStartY = null;
+
+if (gameArea) {
+  gameArea.addEventListener(
+    "touchstart",
+    e => {
+      const touch = e.changedTouches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+    },
+    { passive: true }
+  );
+
+  gameArea.addEventListener(
+    "touchend",
+    e => {
+      if (touchStartX === null || touchStartY === null) return;
+      const touch = e.changedTouches[0];
+      const dx = touch.clientX - touchStartX;
+      const dy = touch.clientY - touchStartY;
+      touchStartX = null;
+      touchStartY = null;
+
+      const horizontalSwipe = Math.abs(dx) > 60 && Math.abs(dy) < 40;
+      if (horizontalSwipe && dx < 0) {
+        newPuzzle();
+      }
+    },
+    { passive: true }
+  );
+}
 
 // First load
 newPuzzle();
