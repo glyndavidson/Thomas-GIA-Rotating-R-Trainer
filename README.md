@@ -25,7 +25,7 @@ The tool mimics the behaviour of the official Thomas test while remaining distra
 
 
 ## 👨‍💻 Author
-Glyn Davidson
+Glyn Davidson <br>
 Developer, climber, and chronic tinkerer of occasionally useful tools.
 <br><br>
 
