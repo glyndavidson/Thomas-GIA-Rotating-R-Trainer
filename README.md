@@ -1,7 +1,7 @@
 # Thomas GIA — Rotating R Trainer  
 A lightweight, training tool for practising the **Rotating R** spatial visualisation task used in the **Thomas GIA (General Intelligence Assessment)**.
 
-![Screenshot of Rotating R Trainer Interface](https://github.com/glyndavidson/Thomas-GIA-Rotating-R-Trainer/blob/main/Screenshot%202025-12-03%20203639.png?raw=true)
+![Screenshot of Rotating R Trainer Interface](https://github.com/glyndavidson/Thomas-GIA-Rotating-R-Trainer/blob/main/Screenshot.png?raw=true)
 <br><br>
 
 
