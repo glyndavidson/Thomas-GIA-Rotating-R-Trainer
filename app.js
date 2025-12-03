@@ -117,38 +117,14 @@ document.addEventListener("keydown", e => {
   }
 });
 
-// Swipe left = new puzzle (mobile)
-let touchStartX = null;
-let touchStartY = null;
-
+// Tap anywhere in the game area (except buttons) = new puzzle
 if (gameArea) {
-  gameArea.addEventListener(
-    "touchstart",
-    e => {
-      const touch = e.changedTouches[0];
-      touchStartX = touch.clientX;
-      touchStartY = touch.clientY;
-    },
-    { passive: true }
-  );
-
-  gameArea.addEventListener(
-    "touchend",
-    e => {
-      if (touchStartX === null || touchStartY === null) return;
-      const touch = e.changedTouches[0];
-      const dx = touch.clientX - touchStartX;
-      const dy = touch.clientY - touchStartY;
-      touchStartX = null;
-      touchStartY = null;
-
-      const horizontalSwipe = Math.abs(dx) > 60 && Math.abs(dy) < 40;
-      if (horizontalSwipe && dx < 0) {
-        newPuzzle();
-      }
-    },
-    { passive: true }
-  );
+  gameArea.addEventListener("click", e => {
+    if (e.target.closest("button[data-guess]") || e.target.closest(".buttons")) {
+      return;
+    }
+    newPuzzle();
+  });
 }
 
 // First load
