@@ -119,12 +119,21 @@ document.addEventListener("keydown", e => {
 
 // Tap anywhere in the game area (except buttons) = new puzzle
 if (gameArea) {
+  const shouldIgnoreTap = target =>
+    target.closest("button[data-guess]") || target.closest(".buttons");
+
   gameArea.addEventListener("click", e => {
-    if (e.target.closest("button[data-guess]") || e.target.closest(".buttons")) {
-      return;
-    }
-    newPuzzle();
+    if (!shouldIgnoreTap(e.target)) newPuzzle();
   });
+
+  gameArea.addEventListener(
+    "pointerup",
+    e => {
+      if (e.pointerType === "mouse") return; // mouse handled via click
+      if (!shouldIgnoreTap(e.target)) newPuzzle();
+    },
+    { passive: true }
+  );
 }
 
 // First load
