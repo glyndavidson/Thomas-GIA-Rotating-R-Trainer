@@ -62,15 +62,15 @@ function applyOrientation(el, ori) {
   el.style.transform = `scaleX(${scaleX}) rotate(${ori.angle}deg)`;
 }
 
-// Count how many row pairs match by rotation only (chirality must match; rotation can differ).
+// Count how many column pairs match by rotation only (chirality must match; rotation can differ).
 function countMatchingPairs() {
   let matches = 0;
 
-  // Row 0: g0 vs g2
-  if (current[0].chirality === current[2].chirality) matches++;
+  // Left column: g0 vs g1
+  if (current[0].chirality === current[1].chirality) matches++;
 
-  // Row 1: g1 vs g3
-  if (current[1].chirality === current[3].chirality) matches++;
+  // Right column: g2 vs g3
+  if (current[2].chirality === current[3].chirality) matches++;
 
   return matches;
 }
