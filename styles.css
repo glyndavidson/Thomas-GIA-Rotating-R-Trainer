@@ -31,10 +31,12 @@ body {
   background: var(--panel);
   color: var(--text);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  height: 100vh;
+  min-height: 100vh;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 32px 16px;
 }
 
 .app {
@@ -42,6 +44,7 @@ body {
   padding: 24px 32px;
   background: var(--panel);
   color: var(--text);
+  width: min(480px, 100%);
 }
 
 h1 {
@@ -68,6 +71,7 @@ h1 {
   justify-items: center;
   border: 1px solid;
   padding: 10px;
+  min-width: 90px;
 }
 
 .glyph {
@@ -192,4 +196,46 @@ button:active {
 
 #about a{
   color: var(--href);
+}
+
+@media (max-width: 540px) {
+  .app {
+    padding: 20px;
+  }
+
+  .glyph-board {
+    flex-direction: column;
+    gap: 32px;
+    margin: 24px 0;
+  }
+
+  .glyph-column {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .glyph {
+    font-size: 48px;
+  }
+
+  .buttons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  button {
+    flex: 1;
+  }
+
+  .theme-toggle {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+  }
+
+  #about {
+    position: 0;
+    margin-top: 24px;
+  }
 }
