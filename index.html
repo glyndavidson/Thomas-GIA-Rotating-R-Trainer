@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rotating R Trainer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <label class="theme-toggle" aria-label="Toggle light or dark theme">
+    <span id="dmode">Dark Mode</span>
+    <input type="checkbox" id="theme-toggle">
+    <span class="toggle-track">
+      <span class="toggle-thumb"></span>
+    </span>
+  </label>
+  <div class="app">
+    <h1>Thomas GIA - Rotating R Trainer</h1>
+
+    <p class="hint">
+      Count how many row pairs match by rotation only. <br>
+      Spacebar = new puzzle
+    </p>
+
+    <div class="glyph-board">
+      <div class="glyph-column">
+        <div class="glyph" id="g0">R</div>
+        <div class="glyph" id="g1">R</div>
+      </div>
+      <div class="glyph-column">
+        <div class="glyph" id="g2">R</div>
+        <div class="glyph" id="g3">R</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="feedback">
+        <span id="feedback-icon"></span>
+        <span id="feedback-text"></span>
+      </div>
+      <div class="buttons">
+        <button data-guess="0">0</button>
+        <button data-guess="1">1</button>
+        <button data-guess="2">2</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
