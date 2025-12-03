@@ -16,33 +16,35 @@
   <div class="app">
     <h1>Thomas GIA - Rotating R Trainer</h1>
 
+    <div id="game">
+      <div class="glyph-board">
+        <div class="glyph-column">
+          <div class="glyph" id="g0">R</div>
+          <div class="glyph" id="g1">R</div>
+        </div>
+        <div class="glyph-column">
+          <div class="glyph" id="g2">R</div>
+          <div class="glyph" id="g3">R</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="feedback">
+          <span id="feedback-icon"></span>
+          <span id="feedback-text"></span>
+        </div>
+        <div class="buttons">
+          <button data-guess="0">0</button>
+          <button data-guess="1">1</button>
+          <button data-guess="2">2</button>
+        </div>
+      </div>
+    </div>
+
     <p class="hint">
       Count how many row pairs match by rotation only. <br>
       Spacebar = new puzzle
     </p>
-
-    <div class="glyph-board">
-      <div class="glyph-column">
-        <div class="glyph" id="g0">R</div>
-        <div class="glyph" id="g1">R</div>
-      </div>
-      <div class="glyph-column">
-        <div class="glyph" id="g2">R</div>
-        <div class="glyph" id="g3">R</div>
-      </div>
-    </div>
-
-    <div class="controls">
-      <div class="feedback">
-        <span id="feedback-icon"></span>
-        <span id="feedback-text"></span>
-      </div>
-      <div class="buttons">
-        <button data-guess="0">0</button>
-        <button data-guess="1">1</button>
-        <button data-guess="2">2</button>
-      </div>
-    </div>
   </div>
 
   <div id="about">Find me on <a href="https://github.com/glyndavidson/Thomas-GIA-Rotating-R-Trainer">GitHub</a></div>

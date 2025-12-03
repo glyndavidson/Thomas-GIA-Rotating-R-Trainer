@@ -42,15 +42,19 @@ body {
   padding: 24px 32px;
   background: var(--panel);
   color: var(--text);
-  /* border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5); */
 }
 
 h1 {
   font-size: 1.4rem;
-    margin-bottom: 16px;
 }
 
+#game{
+  margin:50px 0px;
+  /* border:1px solid; */
+  padding:40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+}
 .glyph-board {
   display: inline-flex;
   gap: 64px;
@@ -127,8 +131,6 @@ button:active {
 .feedback.wrong   #feedback-icon { color: var(--wrong); }
 
 .hint {
-  margin-bottom: 100px;
-  font-size: 0.8rem;
   color: var(--subtle);
 }
 
