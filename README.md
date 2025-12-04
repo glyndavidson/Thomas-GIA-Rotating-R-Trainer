@@ -12,7 +12,7 @@ A lightweight, training tool for practising the **Rotating R** spatial visualisa
 ## Buy me a Coffee
 If you found this trainer useful, please consider [buying me a coffee](https://buymeacoffee.com/glyndavidson) to support my work.<br>
 
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-%F0%9F%8D%BA-yellow)](https://buymeacoffee.com/YOURNAME)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-%F0%9F%8D%BA-yellow)](https://buymeacoffee.com/glyndavidson)
 <br><br>
 
 
