@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rotating R Trainer</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/android-chrome-512x512.png">
+  <link rel="shortcut icon" href="icons/favicon.ico">
+  <link rel="stylesheet" href="css/styles.css?v=3.1">
+</head>
+
+<body>
+  <div class="top-toggles">
+    <label class="toggle-switch" aria-label="Toggle light or dark theme">
+      <span class="toggle-text">Dark Mode</span>
+      <input type="checkbox" id="theme-toggle" checked="true">
+      <span class="toggle-track">
+        <span class="toggle-thumb"></span>
+      </span>
+    </label>
+    <label class="toggle-switch" aria-label="Toggle auto progress">
+      <span class="toggle-text" id="auto-progress-toggle-label">Auto-progress</span>
+      <input type="checkbox" id="auto-progress-toggle" checked="true">
+      <span class="toggle-track">
+        <span class="toggle-thumb"></span>
+      </span>
+    </label>
+    <label class="toggle-switch" aria-label="Toggle sound effects">
+      <span class="toggle-text">Sound</span>
+      <input type="checkbox" id="sound-toggle" checked="true">
+      <span class="toggle-track">
+        <span class="toggle-thumb"></span>
+      </span>
+    </label>
+  </div>
+  <div class="app">
+    <h1>Thomas GIA - Rotating R Trainer</h1>
+
+    <div id="welcome-screen" class="card">
+      <p>Sharpen your Thomas GIA Rotating R instincts.</p>
+      <p>Practice at your own pace or<br>jump straight into a timed challenge.</p>
+      <div class="cta-group">
+        <button class="cta-button" id="welcome-practice-btn">Start Practice</button>
+        <button class="cta-button" id="welcome-challenge-btn">Start Challenge</button>
+      </div>
+    </div>
+
+    <div id="game" class="card hidden">
+      <div id="challenge-ui" class="challenge-ui hidden">
+        <div class="progress-track">
+          <div id="challenge-progress" class="progress-bar"></div>
+        </div>
+        <div class="challenge-meta">
+          <span id="challenge-timer">01:00</span>
+        </div>
+      </div>
+
+      <div class="glyph-board">
+        <div class="glyph-column">
+          <div class="glyph" id="g0">R</div>
+          <div class="glyph" id="g1">R</div>
+        </div>
+        <div class="glyph-column">
+          <div class="glyph" id="g2">R</div>
+          <div class="glyph" id="g3">R</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="feedback">
+          <span id="feedback-icon"></span>
+          <span id="feedback-text"></span>
+        </div>
+        <div class="buttons">
+          <button data-guess="0">0</button>
+          <button data-guess="1">1</button>
+          <button data-guess="2">2</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="results" class="card hidden">
+      <h2>Challenge Complete</h2>
+      <div class="results-grid">
+        <div><strong>Correct:</strong> <span id="results-correct">0</span>/<span id="results-total">0</span></div>
+        <div><strong>Final Score:</strong> <span id="results-score">0</span></div>
+      </div>
+      <div id="high-score-banner" class="high-score hidden">🎉 New High Score! 🎉</div>
+      <div class="cta-group">
+        <button class="cta-button" id="results-practice-btn">Return to Practice</button>
+        <button class="cta-button" id="results-retry-btn">Restart Challenge</button>
+      </div>
+      <div class="leaderboard">
+        <h3>Score History</h3>
+        <ul id="score-history"></ul>
+        <a href="#" id="reset-history" class="back-link">Reset score history</a>
+      </div>
+    </div>
+
+    <div class="hint hidden" id="practice-hint">
+      <div class="hint-text">
+        Count how many pairs match by rotation only. <br>
+        <span class="progress-hint">Spacebar / Tap = new puzzle.</span>
+      </div>
+      <div class="hint-actions">
+        <button class="cta-button" id="practice-start-challenge">Start Challenge</button>
+        <a href="#" id="return-to-practice" class="back-link hidden">Return to practice mode</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="about">Find me on <a href="https://github.com/glyndavidson/Thomas-GIA-Rotating-R-Trainer">GitHub</a></div>
+  <audio id="error-audio" src="audio/error.mp3" preload="auto"></audio>
+  <audio id="highscore-audio" src="audio/highscore.mp3" preload="auto"></audio>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
