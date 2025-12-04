@@ -9,13 +9,29 @@
 </head>
 
 <body>
-  <label class="theme-toggle" aria-label="Toggle light or dark theme">
-    <span id="dmode">Dark Mode</span>
-    <input type="checkbox" id="theme-toggle">
-    <span class="toggle-track">
-      <span class="toggle-thumb"></span>
-    </span>
-  </label>
+  <div class="top-toggles">
+    <label class="toggle-switch" aria-label="Toggle light or dark theme">
+      <span class="toggle-text">Dark Mode</span>
+      <input type="checkbox" id="theme-toggle">
+      <span class="toggle-track">
+        <span class="toggle-thumb"></span>
+      </span>
+    </label>
+    <label class="toggle-switch" aria-label="Toggle auto progress">
+      <span class="toggle-text">Auto-progress</span>
+      <input type="checkbox" id="auto-progress-toggle">
+      <span class="toggle-track">
+        <span class="toggle-thumb"></span>
+      </span>
+    </label>
+    <label class="toggle-switch" aria-label="Toggle sound effects">
+      <span class="toggle-text">Sound</span>
+      <input type="checkbox" id="sound-toggle">
+      <span class="toggle-track">
+        <span class="toggle-thumb"></span>
+      </span>
+    </label>
+  </div>
   <div class="app">
     <h1>Thomas GIA - Rotating R Trainer</h1>
 
@@ -44,13 +60,14 @@
       </div>
     </div>
 
-    <p class="hint">
+    <div class="hint">
       Count how many pairs match by rotation only. <br>
-      Spacebar / Tap  = new puzzle.
-    </p>
+      <span class="progress-hint">Spacebar / Tap  = new puzzle.</span>
+    </div>
   </div>
 
   <div id="about">Find me on <a href="https://github.com/glyndavidson/Thomas-GIA-Rotating-R-Trainer">GitHub</a></div>
+  <audio id="error-audio" src="error.mp3" preload="auto"></audio>
   <script src="app.js"></script>
 </body>
 

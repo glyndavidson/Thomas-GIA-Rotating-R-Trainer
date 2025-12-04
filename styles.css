@@ -61,6 +61,23 @@ h1 {
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.2s;
+}
+
+.game-flash {
+  animation: flash-red 400ms ease;
+}
+
+@keyframes flash-red {
+  0% {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+  40% {
+    box-shadow: 0 10px 30px rgba(244, 67, 54, 0.8);
+  }
+  100% {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
 }
 
 .glyph-board {
@@ -150,21 +167,29 @@ button:active {
 }
 
 
-.theme-toggle {
+.top-toggles {
   position: absolute;
   top: 16px;
   right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.toggle-switch {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
   user-select: none;
 }
 
-#dmode {
+.toggle-text {
   margin-right: 10px;
+  font-size: 0.9rem;
 }
 
-.theme-toggle input {
+.toggle-switch input {
   position: absolute;
   opacity: 0;
   width: 0;
@@ -192,11 +217,11 @@ button:active {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-.theme-toggle input:checked+.toggle-track {
+.toggle-switch input:checked+.toggle-track {
   background: var(--button);
 }
 
-.theme-toggle input:checked+.toggle-track .toggle-thumb {
+.toggle-switch input:checked+.toggle-track .toggle-thumb {
   transform: translateX(22px);
   background: var(--panel);
 }
@@ -251,10 +276,11 @@ button:active {
     flex: 1;
   }
 
-  .theme-toggle {
+  .top-toggles {
     position: fixed;
     top: 12px;
     right: 12px;
+    gap: 8px;
   }
 
   #about {

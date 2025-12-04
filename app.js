@@ -1,6 +1,13 @@
 // Rotating R Trainer
 // THEME TOGGLE
 const themeToggleInput = document.getElementById("theme-toggle");
+const autoProgressToggle = document.getElementById("auto-progress-toggle");
+const soundToggle = document.getElementById("sound-toggle");
+const errorAudio = document.getElementById("error-audio");
+const AUTO_PROGRESS_KEY = "autoProgress";
+const SOUND_KEY = "soundEnabled";
+let autoProgressEnabled = localStorage.getItem(AUTO_PROGRESS_KEY) === "true";
+let soundEnabled = localStorage.getItem(SOUND_KEY) === "true";
 
 function applyTheme(theme) {
   const isDark = theme === "dark";
@@ -20,6 +27,45 @@ themeToggleInput.addEventListener("change", () => {
 
 // Load saved theme
 applyTheme(localStorage.getItem("theme") || "dark");
+
+function updateHintVisibility() {
+  const hint = document.querySelector(".progress-hint");
+  if (!hint) return;
+  hint.style.display = autoProgressEnabled ? "none" : "";
+}
+
+function setAutoProgress(enabled) {
+  autoProgressEnabled = enabled;
+  if (autoProgressToggle) {
+    autoProgressToggle.checked = enabled;
+  }
+  localStorage.setItem(AUTO_PROGRESS_KEY, String(enabled));
+  updateHintVisibility();
+}
+
+setAutoProgress(autoProgressEnabled);
+
+if (autoProgressToggle) {
+  autoProgressToggle.addEventListener("change", () => {
+    setAutoProgress(autoProgressToggle.checked);
+  });
+}
+
+function setSoundEnabled(enabled) {
+  soundEnabled = enabled;
+  if (soundToggle) {
+    soundToggle.checked = enabled;
+  }
+  localStorage.setItem(SOUND_KEY, String(enabled));
+}
+
+setSoundEnabled(soundEnabled);
+
+if (soundToggle) {
+  soundToggle.addEventListener("change", () => {
+    setSoundEnabled(soundToggle.checked);
+  });
+}
 
 
 
@@ -50,6 +96,23 @@ const gameArea = document.getElementById("game");
 const feedbackContainer = document.querySelector(".feedback");
 const feedbackIcon = document.getElementById("feedback-icon");
 const feedbackText = document.getElementById("feedback-text");
+
+function triggerErrorFeedback() {
+  if (gameArea) {
+    gameArea.classList.remove("game-flash");
+    // force reflow to restart animation
+    void gameArea.offsetWidth;
+    gameArea.classList.add("game-flash");
+    setTimeout(() => gameArea.classList.remove("game-flash"), 400);
+  }
+  if (navigator.vibrate) {
+    navigator.vibrate(150);
+  }
+  if (soundEnabled && errorAudio) {
+    errorAudio.currentTime = 0;
+    errorAudio.play().catch(() => {});
+  }
+}
 
 // Helpers
 function randomOrientation() {
@@ -94,11 +157,20 @@ function handleGuess(guess) {
   const correctAnswer = countMatchingPairs();
   const isCorrect = guess === correctAnswer;
 
+  if (isCorrect && autoProgressEnabled) {
+    newPuzzle();
+    return;
+  }
+
   feedbackContainer.classList.remove("correct", "wrong");
   feedbackContainer.classList.add(isCorrect ? "correct" : "wrong");
   feedbackIcon.textContent = isCorrect ? "✔" : "✖";
   feedbackText.textContent = isCorrect
     ? `Correct` : `Nope`;
+
+  if (!isCorrect) {
+    triggerErrorFeedback();
+  }
 }
 
 // Button events
@@ -111,6 +183,7 @@ document.querySelectorAll("button[data-guess]").forEach(btn => {
 
 // Spacebar = new puzzle
 document.addEventListener("keydown", e => {
+  if (autoProgressEnabled) return;
   if (e.code === "Space") {
     e.preventDefault();
     newPuzzle();
@@ -122,15 +195,20 @@ if (gameArea) {
   const shouldIgnoreTap = target =>
     target.closest("button[data-guess]") || target.closest(".buttons");
 
+  const handleTap = target => {
+    if (autoProgressEnabled) return;
+    if (!shouldIgnoreTap(target)) newPuzzle();
+  };
+
   gameArea.addEventListener("click", e => {
-    if (!shouldIgnoreTap(e.target)) newPuzzle();
+    handleTap(e.target);
   });
 
   gameArea.addEventListener(
     "pointerup",
     e => {
       if (e.pointerType === "mouse") return; // mouse handled via click
-      if (!shouldIgnoreTap(e.target)) newPuzzle();
+      handleTap(e.target);
     },
     { passive: true }
   );
