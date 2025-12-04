@@ -1,5 +1,8 @@
 // Rotating R Trainer
-// THEME TOGGLE
+// This file wires up the entire UI state machine (welcome, practice, challenge, results),
+// persistence (localStorage), scoring, and the underlying glyph puzzle generator.
+
+// === Persistent UI Toggles & DOM References ===
 const themeToggleInput = document.getElementById("theme-toggle");
 const autoProgressToggle = document.getElementById("auto-progress-toggle");
 const autoProgressToggleLabel = document.getElementById("auto-progress-toggle-label");
@@ -49,11 +52,12 @@ const MODE = {
   RESULTS: "results"
 };
 let currentMode = MODE.WELCOME;
-const CHALLENGE_DURATION_MS = 60000; // 60-second challenge
+const CHALLENGE_DURATION_MS = 180000; // 3 minute challenge
 let challengeTimerId = null;
 let challengeEndTime = null;
 let challengeStats = { correct: 0, wrong: 0 };
 
+// --- Mode helpers ---------------------------------------------------------
 function isChallengeMode() {
   return currentMode === MODE.CHALLENGE;
 }
@@ -71,6 +75,7 @@ function syncAutoProgressUI() {
   }
 }
 
+// --- Theme handling -------------------------------------------------------
 function applyTheme(theme) {
   const isDark = theme === "dark";
   if (isDark) {
@@ -90,6 +95,7 @@ themeToggleInput.addEventListener("change", () => {
 // Load saved theme (default dark)
 applyTheme(storedTheme || "dark");
 
+// --- UI refresh helpers ---------------------------------------------------
 function updateHintVisibility() {
   if (progressHint) {
     const showProgressHint = currentMode === MODE.PRACTICE && !isAutoProgressActive();
@@ -133,6 +139,7 @@ if (soundToggle) {
   });
 }
 
+// --- Challenge score persistence ------------------------------------------
 function loadScoreHistory() {
   try {
     return JSON.parse(localStorage.getItem(SCORES_KEY)) || [];
@@ -161,14 +168,8 @@ function renderScoreHistory(history) {
   });
 }
 
-// function updateChallengeScoreboard() {
-//   const score = challengeStats.correct - challengeStats.wrong;
-//   challengeScoreText.textContent = `Score: ${score}`;
-// }
-
 function resetChallengeStats() {
   challengeStats = { correct: 0, wrong: 0 };
-  //updateChallengeScoreboard();
   if (challengeProgress) {
     challengeProgress.style.width = "0%";
     challengeProgress.classList.remove("danger");
@@ -218,6 +219,7 @@ function startChallengeTimer() {
   challengeTimerId = requestAnimationFrame(tick);
 }
 
+// --- Mode transitions -----------------------------------------------------
 function showWelcomeScreen() {
   currentMode = MODE.WELCOME;
   if (welcomeScreen) welcomeScreen.classList.remove("hidden");
@@ -308,6 +310,7 @@ function endChallenge() {
   updateHintVisibility();
 }
 
+// --- Event wiring ---------------------------------------------------------
 if (welcomePracticeBtn) {
   welcomePracticeBtn.addEventListener("click", () => {
     enterPracticeMode();
@@ -357,7 +360,6 @@ if (resetHistoryLink) {
 renderScoreHistory(loadScoreHistory());
 showWelcomeScreen();
 
-
 // Each orientation has: chirality (N = normal, M = mirrored) and angle.
 const ORIENTATIONS = [
   { id: "N0", chirality: "N", angle: 0 },
@@ -402,6 +404,7 @@ function triggerErrorFeedback() {
   }
 }
 
+// === Puzzle logic (glyph generation + guessing) ===
 // Helpers
 function randomOrientation() {
   const idx = Math.floor(Math.random() * ORIENTATIONS.length);
