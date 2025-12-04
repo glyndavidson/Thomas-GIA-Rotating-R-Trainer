@@ -4,10 +4,18 @@ const themeToggleInput = document.getElementById("theme-toggle");
 const autoProgressToggle = document.getElementById("auto-progress-toggle");
 const soundToggle = document.getElementById("sound-toggle");
 const errorAudio = document.getElementById("error-audio");
+const THEME_KEY = "theme";
 const AUTO_PROGRESS_KEY = "autoProgress";
 const SOUND_KEY = "soundEnabled";
-let autoProgressEnabled = localStorage.getItem(AUTO_PROGRESS_KEY) === "true";
-let soundEnabled = localStorage.getItem(SOUND_KEY) === "true";
+const storedTheme = localStorage.getItem(THEME_KEY) || "dark";
+let autoProgressEnabled =
+  localStorage.getItem(AUTO_PROGRESS_KEY) === null
+    ? true
+    : localStorage.getItem(AUTO_PROGRESS_KEY) === "true";
+let soundEnabled =
+  localStorage.getItem(SOUND_KEY) === null
+    ? true
+    : localStorage.getItem(SOUND_KEY) === "true";
 
 function applyTheme(theme) {
   const isDark = theme === "dark";
@@ -21,12 +29,12 @@ function applyTheme(theme) {
 
 themeToggleInput.addEventListener("change", () => {
   const newTheme = themeToggleInput.checked ? "dark" : "light";
-  localStorage.setItem("theme", newTheme);
+  localStorage.setItem(THEME_KEY, newTheme);
   applyTheme(newTheme);
 });
 
-// Load saved theme
-applyTheme(localStorage.getItem("theme") || "dark");
+// Load saved theme (default dark)
+applyTheme(storedTheme || "dark");
 
 function updateHintVisibility() {
   const hint = document.querySelector(".progress-hint");
