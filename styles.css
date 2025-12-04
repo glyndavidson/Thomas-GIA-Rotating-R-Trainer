@@ -277,10 +277,10 @@ button:active {
   }
 
   .top-toggles {
-    position: fixed;
-    top: 12px;
-    right: 12px;
-    gap: 8px;
+    position: static;
+    margin-left: auto;
+    gap: 18px;
+    margin-bottom:20px;
   }
 
   #about {
