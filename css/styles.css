@@ -10,7 +10,6 @@
   --text: #eee;
   --subtle: #a0a7b4;
   --button: linear-gradient(180deg, #4460a1, #202e4e);
-  ;
   --button-hover: linear-gradient(180deg, #446ba1, #1a2a4e);
   --correct: #4caf50;
   --wrong: #f44336;
@@ -173,7 +172,7 @@ h1 {
 .challenge-meta {
   font-size: 0.9rem;
   color: var(--subtle);
-  text-align:right;
+  text-align: right;
 }
 
 .controls {
@@ -283,6 +282,19 @@ button:active {
   font-size: 0.9rem;
 }
 
+#coffee {
+  font-style: italic;
+  margin-top: 30px;
+}
+
+#coffee a {
+  color: var(--href);
+}
+
+#coffee a:visited {
+  color: var(--href);
+}
+
 #return-to-practice {
   display: inline-block;
 }
@@ -294,9 +306,10 @@ button:active {
 .results-grid {
   margin: 16px 0;
   text-align: left;
-  font-size:1.25rem;
+  font-size: 1.25rem;
 }
-.results-grid div{
+
+.results-grid div {
   margin: 10px 0px;
 }
 
@@ -359,8 +372,8 @@ button:active {
   font-size: 0.9rem;
 }
 
-.toggle-disabled{
-  color:#999;
+.toggle-disabled {
+  color: #999;
 }
 
 .toggle-switch input {
@@ -407,6 +420,11 @@ button:active {
 
 #about a {
   color: var(--href);
+  text-decoration: none;
+}
+
+#about a:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 540px) {
@@ -442,8 +460,8 @@ button:active {
 
   .top-toggles {
     position: static;
-    margin-left:auto;
-    gap:12px;
+    margin-left: auto;
+    gap: 12px;
   }
 
   #about {

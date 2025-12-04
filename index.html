@@ -11,7 +11,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="icons/android-chrome-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="icons/android-chrome-512x512.png">
   <link rel="shortcut icon" href="icons/favicon.ico">
-  <link rel="stylesheet" href="css/styles.css?v=3.1">
+  <link rel="stylesheet" href="css/styles.css?v=3.2">
 </head>
 
 <body>
@@ -23,16 +23,16 @@
         <span class="toggle-thumb"></span>
       </span>
     </label>
-    <label class="toggle-switch" aria-label="Toggle auto progress">
-      <span class="toggle-text" id="auto-progress-toggle-label">Auto-progress</span>
-      <input type="checkbox" id="auto-progress-toggle" checked="true">
+    <label class="toggle-switch" aria-label="Toggle sound effects">
+      <span class="toggle-text">Sound</span>
+      <input type="checkbox" id="sound-toggle" checked="true">
       <span class="toggle-track">
         <span class="toggle-thumb"></span>
       </span>
     </label>
-    <label class="toggle-switch" aria-label="Toggle sound effects">
-      <span class="toggle-text">Sound</span>
-      <input type="checkbox" id="sound-toggle" checked="true">
+    <label class="toggle-switch" aria-label="Toggle auto progress">
+      <span class="toggle-text" id="auto-progress-toggle-label">Auto-progress</span>
+      <input type="checkbox" id="auto-progress-toggle" checked="true">
       <span class="toggle-track">
         <span class="toggle-thumb"></span>
       </span>
@@ -91,12 +91,13 @@
         <div><strong>Final Score:</strong> <span id="results-score">0</span></div>
       </div>
       <div id="high-score-banner" class="high-score hidden">🎉 New High Score! 🎉</div>
+      <div id="coffee">If you found this trainer useful, please consider <br>☕ <a href="https://buymeacoffee.com/glyndavidson" aria-label="Buy me a coffee to support my work" target="_blank">buying me a coffee</a> to support my work.</div>
       <div class="cta-group">
         <button class="cta-button" id="results-practice-btn">Return to Practice</button>
         <button class="cta-button" id="results-retry-btn">Restart Challenge</button>
       </div>
       <div class="leaderboard">
-        <h3>Score History</h3>
+        <h3>High Scores</h3>
         <ul id="score-history"></ul>
         <a href="#" id="reset-history" class="back-link">Reset score history</a>
       </div>
@@ -114,7 +115,7 @@
     </div>
   </div>
 
-  <div id="about">Find me on <a href="https://github.com/glyndavidson/Thomas-GIA-Rotating-R-Trainer">GitHub</a></div>
+  <div id="about">🏠 <a href="https://github.com/glyndavidson/Thomas-GIA-Rotating-R-Trainer">GitHub</a> · ☕ <a href="https://buymeacoffee.com/glyndavidson" aria-label="Buy me a coffee to support my work" target="_blank">Buy me a coffee</a></div>
   <audio id="error-audio" src="audio/error.mp3" preload="auto"></audio>
   <audio id="highscore-audio" src="audio/highscore.mp3" preload="auto"></audio>
   <script src="js/app.js"></script>
