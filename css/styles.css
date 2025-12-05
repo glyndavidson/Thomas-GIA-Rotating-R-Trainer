@@ -445,7 +445,6 @@ button:active {
   }
 
   .glyph-board {
-    flex-direction: column;
     gap: 32px;
   }
 
@@ -472,6 +471,12 @@ button:active {
   }
 
   .cta-group {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 320px) {
+  .glyph-board {
     flex-direction: column;
   }
 }
